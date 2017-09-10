@@ -34,4 +34,4 @@ color tilde brightmagenta default
 color index blue default ~F
 color index red default "~N|~O"
 
-source .muttrc.secret
+source ~/.muttrc.secret
