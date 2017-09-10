@@ -1,0 +1,5 @@
+caption always
+altscreen on
+startup_message off
+escape ^Tt
+bind j focus

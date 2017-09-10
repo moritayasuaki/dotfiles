@@ -1,0 +1,87 @@
+call plug#begin('~/.vim/plugged')
+
+Plug 'fatih/vim-go'
+Plug 'zah/nim.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'lervag/vimtex'
+
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'kannokanno/previm'
+Plug 'tyru/open-browser.vim'
+
+Plug 'vim-scripts/gtags.vim'
+
+Plug 'thinca/vim-quickrun'
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'justmao945/vim-clang'
+Plug 'vim-syntastic/syntastic'
+
+Plug 'junegunn/vim-easy-align'
+
+Plug 'scrooloose/nerdcommenter'
+Plug 'dhruvasagar/vim-table-mode'
+
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+Plug 'xolox/vim-notes'
+
+Plug 'yuratomo/w3m.vim'
+
+Plug 'rking/ag.vim'
+
+Plug 'bling/vim-bufferline'
+Plug 'mbbill/undotree'
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+call plug#end()
+
+let g:pandoc#filetypes#pandoc_markdown = 0
+let g:NERDTreeShowBookmarks=1
+nnoremap tu        :UndotreeToggle<CR>
+nnoremap tt        :NERDTreeToggle<CR>
+nnoremap tg        :TagbarToggle<CR>
+nmap     <Space>r  <Plug>(quickrun)
+vmap     <tab>     <Plug>(LiveEasyAlign)
+nnoremap fb        :Buffers<CR>
+nnoremap ff        :Files<CR>
+nnoremap fh        :History<CR>
+nnoremap fc        :Commands<CR>
+nnoremap gs        :Gstatus<CR>
+nnoremap gc        :Gcommit<CR>
+nnoremap gt        :GtagsCursor<CR>
+
+let g:syntastic_c_compiler = 'clang'
+let g:syntastic_c_compiler_options = '--std=c11'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:clang_format_style = "file"
+let g:clang_format_auto = 1
+" let g:clang_check_syntax_auto = 1
+let g:clang_load_if_clang_dotfile = 1
+let g:clang_use_path = 1
+
+let g:airline_theme='base16color'
+
+let g:notes_directories = ['~/Dropbox/memo/']
+
+set spelllang=en,cjk
+
+autocmd QuickFixCmdPost *grep* cwindow

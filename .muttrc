@@ -1,0 +1,37 @@
+set folder      = imaps://imap.gmail.com/
+set spoolfile   = +INBOX
+mailboxes       = +INBOX
+
+set header_cache        = ~/.cache/mutt
+set message_cachedir    = ~/.cache/mutt
+
+set postponed   = "+[Gmail]/Drafts"
+unset imap_passive
+set imap_keepalive = 300
+set mail_check = 120
+set sort    = date
+
+unset record
+set use_from    = yes
+set smtp_authenticators = 'gssapi:login'
+set ssl_force_tls = yes
+set ssl_starttls = yes
+
+set pager_index_lines=10
+color normal  default default
+color error   red     default
+color message cyan    default
+color hdrdefault blue default
+color quoted blue default
+color signature blue default
+color attachment red default
+color markers red default
+color error brightred default
+color status black green
+color tree white default
+color search white default
+color tilde brightmagenta default
+color index blue default ~F
+color index red default "~N|~O"
+
+source .muttrc.secret

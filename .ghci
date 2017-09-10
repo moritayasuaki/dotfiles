@@ -1,0 +1,4 @@
+:set -XNoMonomorphismRestriction
+:set +m
+:set +s
+:set prompt "ghci> "
