@@ -19,7 +19,7 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash 
+[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
 if type __git_ps1 > /dev/null 2>&1 ; then
     PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\$ "'
     GIT_PS1_SHOWDIRTYSTATE=true
