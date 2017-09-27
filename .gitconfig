@@ -1,5 +1,5 @@
 [core]
-    excludesfile = $HOME/.gitignore
+	excludesfile = /Users/yasuaki/.gitignore_global
 [color]
     ui = auto
 [push]
@@ -21,3 +21,20 @@
 	smudge = git-lfs smudge %f
 [include]
     path = ~/.gitconfig.local
+[alias]
+    ci = commit -a
+    cia = commit -a --amend
+    st = status
+    co = checkout
+    br = branch
+    l1 = log --pretty=oneline
+    ld = log -p
+    la = log --pretty=\"format:%ad %h (%an): %s\" --date=short
+    lg = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
+    ls = log --stat
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
