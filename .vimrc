@@ -57,7 +57,7 @@ set scrolloff=8
 
 " encoding
 set encoding=utf-8
-set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
+set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,cp932,sjis
 set fileformats=unix,dos,mac
 
 " color
@@ -77,6 +77,7 @@ set statusline=%F%m%r%h%w%=[%c\,%l/%L][%{&ff}][%{&fenc}][%Y][%3p%%]
 
 " leader
 nnoremap <Space><Space> :bnext<CR>
+let mapleader="\<Space>"
 
 if filereadable( $HOME . "/.vimrc.local" )
     source ~/.vimrc.local
