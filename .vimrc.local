@@ -4,12 +4,12 @@ Plug 'fatih/vim-go'
 Plug 'zah/nim.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'lervag/vimtex'
+"Plug 'vim-scripts/c.vim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'kannokanno/previm'
 Plug 'tyru/open-browser.vim'
-
 Plug 'vim-scripts/gtags.vim'
 
 Plug 'thinca/vim-quickrun'
@@ -25,9 +25,10 @@ Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'wesleyche/srcexpl'
 Plug 'majutsushi/tagbar'
 Plug 'justmao945/vim-clang'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-easy-align'
 
@@ -48,13 +49,29 @@ Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'vim-scripts/doxygentoolkit.vim'
+"Plug 'vim-scripts/cpp_doxygen'
+"Plug 'vim-scripts/doxygen-support.vim'
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+Plug 'w0rp/ale'
+
+"Plug 'mopp/next-alter.vim'
+
+Plug 'thinca/vim-qfreplace'
+
+Plug 'vim-scripts/a.vim'
+
 call plug#end()
 
 let g:pandoc#filetypes#pandoc_markdown = 0
-let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowBookmarks = 1
+nnoremap tt        :Switch<CR>
 nnoremap tu        :UndotreeToggle<CR>
-nnoremap tt        :NERDTreeToggle<CR>
+nnoremap tn        :NERDTreeToggle<CR>
 nnoremap tg        :TagbarToggle<CR>
+nnoremap ts        :SrcExplToggle<CR>
 nmap     <Space>r  <Plug>(quickrun)
 vmap     <tab>     <Plug>(LiveEasyAlign)
 nnoremap fb        :Buffers<CR>
@@ -64,6 +81,27 @@ nnoremap fc        :Commands<CR>
 nnoremap gs        :Gstatus<CR>
 nnoremap gc        :Gcommit<CR>
 nnoremap gt        :GtagsCursor<CR>
+
+let g:toggle_switch=0
+function! Switch()
+    execute "normal :NERDTreeClose\<CR>"
+    execute "normal :UndotreeHide\<CR>"
+    execute "normal :TagbarClose\<CR>"
+    let g:toggle_switch+=1
+    if g:toggle_switch == 0
+    elseif g:toggle_switch == 1
+        execute "normal :NERDTree\<CR>"
+    elseif g:toggle_switch == 2
+        execute "normal :UndotreeShow\<CR>"
+    elseif g:toggle_switch == 3
+        execute "normal :TagbarOpen\<CR>"
+    else
+        let g:toggle_switch = 0
+    endif
+endfunction
+command! Switch :call Switch()
+
+let g:tagbar_left = 1
 
 let g:syntastic_c_compiler = 'clang'
 let g:syntastic_c_compiler_options = '--std=c11'
@@ -78,10 +116,15 @@ let g:clang_format_auto = 1
 let g:clang_load_if_clang_dotfile = 1
 let g:clang_use_path = 1
 
+let g:load_doxygen_syntax=1
+
 let g:airline_theme='base16color'
 
 let g:notes_directories = ['~/Dropbox/memo/']
 
+let g:cpp_doxygen_style='qt'
+
 set spelllang=en,cjk
+" au FileType * setlocal formatoptions-=ro
 
 autocmd QuickFixCmdPost *grep* cwindow
