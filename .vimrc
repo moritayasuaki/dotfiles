@@ -77,7 +77,6 @@ set statusline=%F%m%r%h%w%=[%c\,%l/%L][%{&ff}][%{&fenc}][%Y][%3p%%]
 
 " leader
 nnoremap <Space><Space> :bnext<CR>
-let mapleader="\<Space>"
 
 if filereadable( $HOME . "/.vimrc.local" )
     source ~/.vimrc.local
