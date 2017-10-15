@@ -4,7 +4,7 @@ Plug 'fatih/vim-go'
 Plug 'zah/nim.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'lervag/vimtex'
-"Plug 'vim-scripts/c.vim'
+" Plug 'vim-scripts/c.vim'
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -25,12 +25,14 @@ Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'wesleyche/srcexpl'
 Plug 'majutsushi/tagbar'
 Plug 'justmao945/vim-clang'
-"Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-easy-align'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'dhruvasagar/vim-table-mode'
@@ -45,61 +47,46 @@ Plug 'rking/ag.vim'
 
 Plug 'bling/vim-bufferline'
 Plug 'mbbill/undotree'
-
+" Plug 'sjl/gundo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'vim-scripts/doxygentoolkit.vim'
-"Plug 'vim-scripts/cpp_doxygen'
-"Plug 'vim-scripts/doxygen-support.vim'
+" Plug 'vim-scripts/cpp_doxygen'
+" Plug 'vim-scripts/doxygen-support.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'w0rp/ale'
 
-"Plug 'mopp/next-alter.vim'
+" Plug 'mopp/next-alter.vim'
 
 Plug 'thinca/vim-qfreplace'
-
 Plug 'vim-scripts/a.vim'
+
+Plug 'mhinz/vim-signify'
 
 call plug#end()
 
 let g:pandoc#filetypes#pandoc_markdown = 0
-let g:NERDTreeShowBookmarks = 1
-nnoremap tt        :Switch<CR>
-nnoremap tu        :UndotreeToggle<CR>
-nnoremap tn        :NERDTreeToggle<CR>
-nnoremap tg        :TagbarToggle<CR>
-nnoremap ts        :SrcExplToggle<CR>
-nmap     <Space>r  <Plug>(quickrun)
-vmap     <tab>     <Plug>(LiveEasyAlign)
-nnoremap fb        :Buffers<CR>
-nnoremap ff        :Files<CR>
-nnoremap fh        :History<CR>
-nnoremap fc        :Commands<CR>
-nnoremap gs        :Gstatus<CR>
-nnoremap gc        :Gcommit<CR>
-nnoremap gt        :GtagsCursor<CR>
+let s:toggle_switch_sidebar = [
+\   {'show' : ":NERDTreeTabsOpen\<CR>", 'hide' : ":NERDTreeTabsClose\<CR>"},
+\   {'show' : ":UndotreeShow\<CR>", 'hide' : ":UndotreeHide\<CR>"},
+\   {'show' : ":TagbarOpen\<CR>", 'hide' : ":TagbarClose\<CR>"}]
+let s:toggle_switch_number = 0
 
-let g:toggle_switch=0
-function! Switch()
-    execute "normal :NERDTreeClose\<CR>"
-    execute "normal :UndotreeHide\<CR>"
-    execute "normal :TagbarClose\<CR>"
-    let g:toggle_switch+=1
-    if g:toggle_switch == 0
-    elseif g:toggle_switch == 1
-        execute "normal :NERDTree\<CR>"
-    elseif g:toggle_switch == 2
-        execute "normal :UndotreeShow\<CR>"
-    elseif g:toggle_switch == 3
-        execute "normal :TagbarOpen\<CR>"
+function! ToggleSwitch()
+    for i in range(0, len(s:toggle_switch_sidebar) - 1)
+        execute "normal " . s:toggle_switch_sidebar[i]['hide']
+    endfor
+    if s:toggle_switch_number >= len(s:toggle_switch_sidebar)
+        let s:toggle_switch_number = 0
     else
-        let g:toggle_switch = 0
+        execute "normal " . s:toggle_switch_sidebar[s:toggle_switch_number]['show']
+        let s:toggle_switch_number += 1
     endif
 endfunction
-command! Switch :call Switch()
+command! Switch :call ToggleSwitch()
 
 let g:tagbar_left = 1
 
@@ -112,7 +99,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:clang_format_style = "file"
 let g:clang_format_auto = 1
-" let g:clang_check_syntax_auto = 1
+let g:clang_check_syntax_auto = 1
 let g:clang_load_if_clang_dotfile = 1
 let g:clang_use_path = 1
 
@@ -124,7 +111,36 @@ let g:notes_directories = ['~/Dropbox/memo/']
 
 let g:cpp_doxygen_style='qt'
 
+let g:NERDTreeShowBookmarks = 1
+
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCreateDefaultMappgings = 0
+
+let g:gundo_width = 31
+let g:NERDTreeWinSize = 31
+let g:tagbar_width = 31
+let g:undotree_SplitWidth = 31
+
+let mapleader=" "
+
 set spelllang=en,cjk
 " au FileType * setlocal formatoptions-=ro
+
+nnoremap tt        :Switch<CR>
+nnoremap tu        :GundoToggle<CR>
+nnoremap tn        :NERDTreeToggle<CR>
+nnoremap tg        :TagbarToggle<CR>
+nnoremap ts        :SrcExplToggle<CR>
+nmap     <Space>r  <Plug>(quickrun)
+vmap     <tab>     <Plug>(LiveEasyAlign)
+nnoremap fb        :Buffers<CR>
+nnoremap ff        :Files<CR>
+nnoremap fh        :History<CR>
+nnoremap fc        :Commands<CR>
+nnoremap gs        :Gstatus<CR>
+nnoremap gc        :Gcommit<CR>
+nnoremap gt        :GtagsCursor<CR>
+nmap     <Space>c  <Plug>(NERDCommenterToggle)
 
 autocmd QuickFixCmdPost *grep* cwindow
