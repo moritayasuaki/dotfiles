@@ -19,6 +19,7 @@ Plug 'tpope/vim-repeat'
 
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 
@@ -26,7 +27,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'wesleyche/srcexpl'
+" Plug 'wesleyche/srcexpl'
 Plug 'majutsushi/tagbar'
 Plug 'justmao945/vim-clang'
 " Plug 'vim-syntastic/syntastic'
@@ -64,7 +65,7 @@ Plug 'w0rp/ale'
 Plug 'thinca/vim-qfreplace'
 Plug 'vim-scripts/a.vim'
 
-Plug 'mhinz/vim-signify'
+Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
@@ -106,6 +107,7 @@ let g:clang_use_path = 1
 let g:load_doxygen_syntax=1
 
 let g:airline_theme='base16color'
+let g:airline#extensions#tabline#enabled = 1
 
 let g:notes_directories = ['~/Dropbox/memo/']
 
@@ -121,6 +123,7 @@ let g:gundo_width = 31
 let g:NERDTreeWinSize = 31
 let g:tagbar_width = 31
 let g:undotree_SplitWidth = 31
+let g:tmuxline_powerline_separators = 0
 
 let mapleader=" "
 
@@ -131,7 +134,7 @@ nnoremap tt        :Switch<CR>
 nnoremap tu        :GundoToggle<CR>
 nnoremap tn        :NERDTreeToggle<CR>
 nnoremap tg        :TagbarToggle<CR>
-nnoremap ts        :SrcExplToggle<CR>
+" nnoremap ts        :SrcExplToggle<CR>
 nmap     <Space>r  <Plug>(quickrun)
 vmap     <tab>     <Plug>(LiveEasyAlign)
 nnoremap fb        :Buffers<CR>
@@ -140,7 +143,6 @@ nnoremap fh        :History<CR>
 nnoremap fc        :Commands<CR>
 nnoremap gs        :Gstatus<CR>
 nnoremap gc        :Gcommit<CR>
-nnoremap gt        :GtagsCursor<CR>
 nmap     <Space>c  <Plug>(NERDCommenterToggle)
 
 autocmd QuickFixCmdPost *grep* cwindow
