@@ -1,15 +1,10 @@
 # env settings
-test -f ~/.profile && . ~/.profile
-if ls --color=auto 1>/dev/null 2>/dev/null
-then
-    alias ls='ls --color=auto'
-else
-    alias ls='ls -G'
-fi
-if grep --color=auto 1>/dev/null 2>/dev/null
-then
-    alias grep='grep --color=auto'
-fi
+[[ -f ~/.profile ]] && . ~/.profile
+
+ls -G >&/dev/null && alias ls='ls -G'
+ls --color=auto >& /dev/null && alias ls='ls --color=auto'
+grep --color=auto >& /dev/null && alias grep='grep --color=auto'
+
 alias ll='ls -l'
 alias la='ls -A'
 alias lla='ls -lA'
@@ -17,16 +12,15 @@ alias info='info --vi-keys'
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=1000
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ] && source /usr/local/etc/bash_completion.d/git-prompt.sh
-[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && source /usr/local/etc/bash_completion.d/git-completion.bash
-[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ] && source /usr/share/git-core/contrib/completion/git-prompt.sh
+[[ -f ~/.fzf.bash ]] && . ~/.fzf.bash
+[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
+type brew >& /dev/null && prefix=$(brew --prefix)
+[[ -f $prefix/etc/bash_completion  ]] && . $prefix/etc/bash_completion
 
-if type __git_ps1 > /dev/null 2>&1 ; then
-    PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\$ "'
-    GIT_PS1_SHOWDIRTYSTATE=true
-    GIT_PS1_SHOWUPSTREAM="auto"
-    GIT_PS1_SHOWUNTRACKEDFILES=true
-    GIT_PS1_SHOWSTASHSTATE=true
-    GIT_PS1_SHOWCOLORHINTS=true
-fi
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWUNTRACKEDFILES=
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWCOLORHINTS=true
+
+type __git_ps1 >& /dev/null; PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\$ "'

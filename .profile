@@ -18,7 +18,7 @@ export EDITOR PAGER
 
 # env
 PATH=$HOME/bin:$PATH
-LESS='-i -r'
+LESS='-iMr'
 
 export LESS
 

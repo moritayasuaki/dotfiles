@@ -66,6 +66,7 @@ Plug 'thinca/vim-qfreplace'
 Plug 'vim-scripts/a.vim'
 
 Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/promptline.vim'
 
 call plug#end()
 
