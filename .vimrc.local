@@ -23,14 +23,13 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 " Plug 'wesleyche/srcexpl'
 Plug 'majutsushi/tagbar'
 Plug 'justmao945/vim-clang'
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
@@ -58,7 +57,7 @@ Plug 'vim-scripts/doxygentoolkit.vim'
 
 Plug 'ctrlpvim/ctrlp.vim'
 
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 " Plug 'mopp/next-alter.vim'
 
@@ -67,6 +66,11 @@ Plug 'vim-scripts/a.vim'
 
 Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'valloric/youcompleteme' 
+Plug 'maralla/completor.vim'
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -126,6 +130,10 @@ let g:tagbar_width = 31
 let g:undotree_SplitWidth = 31
 let g:tmuxline_powerline_separators = 0
 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:snip_author="Yasuaki MORITA"
+let g:snip_email="zousandazou@gmail.com"
+
 let mapleader=" "
 
 set spelllang=en,cjk
@@ -145,5 +153,7 @@ nnoremap fc        :Commands<CR>
 nnoremap gs        :Gstatus<CR>
 nnoremap gc        :Gcommit<CR>
 nmap     <Space>c  <Plug>(NERDCommenterToggle)
+
+set rtp+=/usr/local/opt/fzf
 
 autocmd QuickFixCmdPost *grep* cwindow
