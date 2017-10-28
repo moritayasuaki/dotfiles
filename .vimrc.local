@@ -68,9 +68,11 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'edkolev/promptline.vim'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'valloric/youcompleteme' 
+" Plug 'valloric/youcompleteme'
 Plug 'maralla/completor.vim'
 Plug 'ervandew/supertab'
+Plug 'chrisbra/unicode.vim'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
@@ -143,9 +145,8 @@ nnoremap tt        :Switch<CR>
 nnoremap tu        :GundoToggle<CR>
 nnoremap tn        :NERDTreeToggle<CR>
 nnoremap tg        :TagbarToggle<CR>
-" nnoremap ts        :SrcExplToggle<CR>
 nmap     <Space>r  <Plug>(quickrun)
-vmap     <tab>     <Plug>(LiveEasyAlign)
+vmap     a         <Plug>(LiveEasyAlign)
 nnoremap fb        :Buffers<CR>
 nnoremap ff        :Files<CR>
 nnoremap fh        :History<CR>
@@ -153,6 +154,7 @@ nnoremap fc        :Commands<CR>
 nnoremap gs        :Gstatus<CR>
 nnoremap gc        :Gcommit<CR>
 nmap     <Space>c  <Plug>(NERDCommenterToggle)
+" nnoremap ts        :SrcExplToggle<CR>
 
 set rtp+=/usr/local/opt/fzf
 
