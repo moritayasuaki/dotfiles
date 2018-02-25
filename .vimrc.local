@@ -3,6 +3,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'fatih/vim-go'
 Plug 'zah/nim.vim'
 Plug 'rust-lang/rust.vim'
+Plug 'rust-lang-nursery/rustfmt'
+Plug 'racer-rust/vim-racer'
 Plug 'lervag/vimtex'
 " Plug 'vim-scripts/c.vim'
 
@@ -32,7 +34,7 @@ Plug 'justmao945/vim-clang'
 Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-easy-align'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'dhruvasagar/vim-table-mode'
@@ -78,9 +80,10 @@ call plug#end()
 
 let g:pandoc#filetypes#pandoc_markdown = 0
 let s:toggle_switch_sidebar = [
+\   {'show' : ":TagbarOpen\<CR>", 'hide' : ":TagbarClose\<CR>"},
 \   {'show' : ":NERDTreeTabsOpen\<CR>", 'hide' : ":NERDTreeTabsClose\<CR>"},
-\   {'show' : ":UndotreeShow\<CR>", 'hide' : ":UndotreeHide\<CR>"},
-\   {'show' : ":TagbarOpen\<CR>", 'hide' : ":TagbarClose\<CR>"}]
+\   {'show' : ":UndotreeShow\<CR>", 'hide' : ":UndotreeHide\<CR>"}
+\]
 let s:toggle_switch_number = 0
 
 function! ToggleSwitch()
@@ -157,5 +160,22 @@ nmap     <Space>c  <Plug>(NERDCommenterToggle)
 " nnoremap ts        :SrcExplToggle<CR>
 
 set rtp+=/usr/local/opt/fzf
+
+set hidden
+let g:racer_cmd = "${HOME}/.cargo/bin/racer" 
+let g:rustfmt_autosave = 1
+let g:rustfmt_cmd = "${HOME}/.cargo/bin/rustfmt" 
+let g:quickrun_config = {
+\ 'python': {'command': 'python3'},
+\ '*': {
+\   'outputter/buffer/split': ':rightbelow 8sp',
+\   'outputter' : 'error',
+\   'outputter/error/success' : 'buffer',
+\   'outputter/error/error' : 'quickfix',
+\   'outputter/buffer/close_on_empty' : 1,
+\  }
+\}
+
+let g:easytags_suppress_ctags_warning = 1
 
 autocmd QuickFixCmdPost *grep* cwindow
