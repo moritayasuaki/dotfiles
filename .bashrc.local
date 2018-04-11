@@ -23,6 +23,9 @@ GIT_PS1_SHOWUNTRACKEDFILES=
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWCOLORHINTS=true
 
+export PATH=/Developer/NVIDIA/CUDA-CUDA-9.1/bin:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.1/lib:$DYLD_LIBRARY_PATH
+
 type __git_ps1 >& /dev/null && PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\$ "'
 FZF_CTRL_T_OPTS=' --preview "preview {}" --color dark --height 50% --reverse'
 
